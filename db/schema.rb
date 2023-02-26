@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_26_044734) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_26_180435) do
+  create_table "cards", force: :cascade do |t|
+    t.text "question"
+    t.text "awser"
+    t.integer "collection_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collection_id"], name: "index_cards_on_collection_id"
+  end
+
   create_table "collections", force: :cascade do |t|
     t.string "title"
     t.text "description"
