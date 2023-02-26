@@ -18,6 +18,7 @@
                 <td><%= collection.title %></td>
                 <td><%= collection.description %></td>
                 <td>
+                    <%= link_to 'Cartas', collection_cards_path(collection) %>
                     <%= link_to 'Editar', edit_collection_path(collection) %>
                     <%= button_to 'Remover', collection_path(collection), method: :delete %>
                 </td>
