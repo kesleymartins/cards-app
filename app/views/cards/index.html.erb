@@ -1,0 +1,28 @@
+<h2>Coleção: <%= @collection.title %></h2>
+
+<%= link_to 'nova carta', new_collection_card_path(@collection) %>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>question</th>
+            <th>awser</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @cards.each do |card| %>
+            <tr>
+                <td><%= card.id %></td>
+                <td><%= card.question %></td>
+                <td><%= card.awser %></td>
+                <td>
+                    <%= link_to 'visualizar', collection_card_path(@collection, card) %>
+                    <%= link_to 'Editar', edit_collection_card_path(@collection, card) %>
+                    <%= button_to 'remover', collection_card_path(@collection, card), method: :delete %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

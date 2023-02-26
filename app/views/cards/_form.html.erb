@@ -1,0 +1,15 @@
+<%= form_with(model: [collection, card]) do |f| %>
+    <div class="field">
+        <%= f.label :question %>
+        <%= f.text_field :question %>
+    </div>
+
+    <div class="field">
+        <%= f.label :awser %>
+        <%= f.text_field :awser %>
+    </div>
+
+    <div class="field">
+        <%= f.submit  %>
+    </div>
+<% end %>
