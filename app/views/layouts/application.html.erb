@@ -7,12 +7,35 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" %>
   </head>
 
-  <body>
-    <p style="color: green"><%= notice %></p>
-    <p style="color: red"><%= alert %></p>
+  <body class="container">
+    <header>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <%= link_to 'Cards App', root_path, class: 'title is-1' %>
+        </div>
+      </nav>
+    </header>
+    
+    <main>
+      <div class="my-6">
+        <% if alert %>
+          <div class="notification is-danger is-light">
+            <p><%= alert %></p>
+          </div>
+        <% end %>
 
-    <%= yield %>
+        <% if notice %>
+          <div class="notification is-success is-light">
+            <p><%= notice %></p>
+          </div>
+        <% end %>
+      </div>
+
+      <%= yield %>
+    </main>
+
   </body>
 </html>
