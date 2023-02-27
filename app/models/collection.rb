@@ -3,4 +3,5 @@ class Collection < ApplicationRecord
     validates :description, presence: true
 
     has_many :cards, dependent: :destroy
+    has_many :cycles, dependent: :destroy
 end
