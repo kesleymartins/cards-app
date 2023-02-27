@@ -33,3 +33,7 @@
         </div>
     <% end %>
 </div>
+
+<% if @cards.empty? %>
+    <%= render 'shared/resource_not_found' %>
+<% end %>

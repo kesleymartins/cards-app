@@ -35,3 +35,7 @@
         </div>
     <% end %>
 </div>
+
+<% if @collections.empty? %>
+    <%= render 'shared/resource_not_found' %>
+<% end %>
