@@ -11,6 +11,7 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 gem 'importmap-rails', '~> 1.1', '>= 1.1.5'
 gem 'turbo-rails', '~> 1.3', '>= 1.3.3'
+gem 'stimulus-rails', '~> 1.2', '>= 1.2.1'
 
 group :development do
 end
