@@ -1,28 +1,34 @@
-<h2>Coleção: <%= @collection.title %></h2>
+<div class="level">
+  <div class="level-left">
+    <div class="level-item">
+        <h2 class="subtitle is-2">
+            <%= @collection.title %>
+        </h2>
+    </div>
+  </div>
 
-<%= link_to 'nova carta', new_collection_card_path(@collection) %>
+  <div class="level-right">
+    <p class="level-item">
+        <%= link_to 'Nova Carta', new_collection_card_path(@collection), class: 'button is-primary' %>
+    </p>
+  </div>
+</div>
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>question</th>
-            <th>awser</th>
-            <th>actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @cards.each do |card| %>
-            <tr>
-                <td><%= card.id %></td>
-                <td><%= card.question %></td>
-                <td><%= card.awser %></td>
-                <td>
-                    <%= link_to 'visualizar', collection_card_path(@collection, card) %>
-                    <%= link_to 'Editar', edit_collection_card_path(@collection, card) %>
-                    <%= button_to 'remover', collection_card_path(@collection, card), method: :delete %>
-                </td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+<hr />
+
+<div class="columns is-multiline">
+    <% @cards.each do |card| %>
+        <div class="column is-one-third">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        <%= card.question %>
+                    </p>
+                </header>
+                <footer class="card-footer">
+                    <%= link_to 'Editar', edit_collection_card_path(@collection, card), class: 'card-footer-item' %>
+                </footer>
+            </div>
+        </div>
+    <% end %>
+</div>

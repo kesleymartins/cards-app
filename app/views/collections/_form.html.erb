@@ -1,27 +1,31 @@
 <%= form_with(model: collection) do |form| %>
+  
   <% if collection.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(collection.errors.count, "error") %> prohibited this collection from being saved:</h2>
-
-      <ul>
-        <% collection.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <article class="message is-danger">
+      <div class="message-header">
+        <h2><%= pluralize(collection.errors.count, "erro") %> proibindo esta coleção ser salva!</h2>
+      </div>
+      <div class="message-body">
+        <ul>
+          <% collection.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </article>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="field">
+    <%= form.label :title, class: 'label' %>
+    <%= form.text_field :title, class: 'input' %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="field">
+    <%= form.label :description, class: 'label' %>
+    <%= form.text_area :description, class: 'textarea' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="field">
+    <%= form.submit class: 'button is-primary' %>
   </div>
 <% end %>

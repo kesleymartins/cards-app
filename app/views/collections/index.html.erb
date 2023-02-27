@@ -1,28 +1,36 @@
-<h2>Coleções</h2>
+<div class="level">
+  <div class="level-left">
+    <div class="level-item">
+        <h2 class="subtitle is-2">Coleções</h2>
+    </div>
+  </div>
 
-<%= link_to 'Nova coleção', new_collection_path %>
+  <div class="level-right">
+    <p class="level-item">
+        <%= link_to 'Nova coleção', new_collection_path, class: 'button is-primary' %>
+    </p>
+  </div>
+</div>
 
-<table>
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>title</th>
-            <th>description</th>
-            <th>ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @collections.each do |collection| %>
-            <tr>
-                <td><%= collection.id %></td>
-                <td><%= collection.title %></td>
-                <td><%= collection.description %></td>
-                <td>
-                    <%= link_to 'Cartas', collection_cards_path(collection) %>
-                    <%= link_to 'Editar', edit_collection_path(collection) %>
-                    <%= button_to 'Remover', collection_path(collection), method: :delete %>
-                </td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+<hr />
+
+<div class="columns is-multiline">
+    <% @collections.each do |collection| %>
+        <div class="column is-one-third">
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title"><%= collection.title %></p>
+                </header>
+                <div class="card-content">
+                    <div class="content">
+                        <%= collection.description %>
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <%= link_to 'Cartas', collection_cards_path(collection), class: 'card-footer-item' %>
+                    <%= link_to 'Editar', edit_collection_path(collection), class: 'card-footer-item' %>
+                </footer>
+            </div>
+        </div>
+    <% end %>
+</div>
