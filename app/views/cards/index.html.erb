@@ -9,7 +9,7 @@
 
   <div class="level-right">
     <p class="level-item">
-        <%= link_to 'Nova Carta', new_collection_card_path(@collection), class: 'button is-primary' %>
+        <%= link_to 'Nova Carta', new_collection_card_path(@collection), data: { turbo_frame: "modal" }, class: 'button is-primary' %>
     </p>
   </div>
 </div>
@@ -27,7 +27,7 @@
                         </p>
                     </header>
                     <footer class="card-footer">
-                        <%= link_to 'Editar', edit_collection_card_path(@collection, card), class: 'card-footer-item' %>
+                        <%= link_to 'Editar', edit_collection_card_path(@collection, card), data: { turbo_frame: "modal" }, class: 'card-footer-item' %>
                         <%= link_to 'Remover', collection_card_path(@collection, card), data: { turbo_method: :delete }, class: 'card-footer-item' %>
                     </footer>
                 </div>
@@ -41,3 +41,5 @@
 <% else %>
     <%= render 'shared/resource_not_found' %>
 <% end %>
+
+<%= turbo_frame_tag "modal" %>
