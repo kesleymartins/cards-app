@@ -1,0 +1,14 @@
+<% if resource.errors.any? %>
+    <article class="message is-danger">
+      <div class="message-header">
+        <h2><%= pluralize(resource.errors.count, "erro") %> proibindo esta coleção ser salva!</h2>
+      </div>
+      <div class="message-body">
+        <ul>
+          <% resource.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </article>
+<% end %>

@@ -1,4 +1,6 @@
 <%= form_with(model: [collection, card]) do |f| %>
+  <%= render 'shared/form_errors', resource: card  %>
+
     <div class="field">
         <%= f.label :question, class: 'label' %>
         <%= f.text_area :question, rows: 1, class: 'textarea' %>
