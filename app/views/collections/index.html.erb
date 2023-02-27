@@ -14,28 +14,31 @@
 
 <hr />
 
-<div class="columns is-multiline">
-    <% @collections.each do |collection| %>
-        <div class="column is-one-third">
-            <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title"><%= collection.title %></p>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        <%= collection.description %>
+<% unless @collections.empty? %>
+    <div class="columns is-multiline">
+        <% @collections.each do |collection| %>
+            <div class="column is-one-third">
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title"><%= collection.title %></p>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            <%= collection.description %>
+                        </div>
                     </div>
+                    <footer class="card-footer">
+                        <%= link_to 'Cartas', collection_cards_path(collection), class: 'card-footer-item' %>
+                        <%= link_to 'Editar', edit_collection_path(collection), class: 'card-footer-item' %>
+                        <%= link_to 'Remover', collection_path(collection), data: { turbo_method: :delete }, class: 'card-footer-item' %>
+                    </footer>
                 </div>
-                <footer class="card-footer">
-                    <%= link_to 'Cartas', collection_cards_path(collection), class: 'card-footer-item' %>
-                    <%= link_to 'Editar', edit_collection_path(collection), class: 'card-footer-item' %>
-                    <%= link_to 'Remover', collection_path(collection), data: { turbo_method: :delete }, class: 'card-footer-item' %>
-                </footer>
             </div>
-        </div>
-    <% end %>
-</div>
-
-<% if @collections.empty? %>
+        <% end %>
+    </div>
+    <div class="is-flex is-justify-content-center">
+        <%== pagy_bulma_nav(@pagy) %>
+    </div>
+<% else %>
     <%= render 'shared/resource_not_found' %>
 <% end %>

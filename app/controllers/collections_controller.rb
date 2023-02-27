@@ -2,7 +2,7 @@ class CollectionsController < ApplicationController
   before_action :set_collection, only: %i[ edit update destroy ]
 
   def index
-    @collections = Collection.all
+    @pagy, @collections = pagy(Collection.all)
   end
 
   def new
