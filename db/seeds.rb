@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+50.times do
+    collection = Collection.create!({
+        title: Faker::Games::WorldOfWarcraft.hero,
+        description: Faker::Games::WorldOfWarcraft.quote
+    })
+
+    100.times do
+        Card.create!({
+            question: Faker::Books::Dune.quote,
+            awser: Faker::Books::Dune.character,
+            collection: collection
+        })
+    end
+end
