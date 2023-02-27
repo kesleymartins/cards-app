@@ -3,7 +3,7 @@ class CardsController < ApplicationController
   before_action :set_card, only: %i[ edit update destroy ]
   
   def index
-    @cards = Card.all.where(collection: @collection)
+    @pagy, @cards = pagy(Card.all.where(collection: @collection))
   end
 
   def new

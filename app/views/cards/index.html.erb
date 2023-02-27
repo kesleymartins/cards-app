@@ -16,24 +16,28 @@
 
 <hr />
 
-<div class="columns is-multiline">
-    <% @cards.each do |card| %>
-        <div class="column is-one-third">
-            <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        <%= card.question %>
-                    </p>
-                </header>
-                <footer class="card-footer">
-                    <%= link_to 'Editar', edit_collection_card_path(@collection, card), class: 'card-footer-item' %>
-                    <%= link_to 'Remover', collection_card_path(@collection, card), data: { turbo_method: :delete }, class: 'card-footer-item' %>
-                </footer>
+<% unless @cards.empty? %>
+    <div class="columns is-multiline">
+        <% @cards.each do |card| %>
+            <div class="column is-one-third">
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title has-text-justified">
+                            <%= card.question %>
+                        </p>
+                    </header>
+                    <footer class="card-footer">
+                        <%= link_to 'Editar', edit_collection_card_path(@collection, card), class: 'card-footer-item' %>
+                        <%= link_to 'Remover', collection_card_path(@collection, card), data: { turbo_method: :delete }, class: 'card-footer-item' %>
+                    </footer>
+                </div>
             </div>
-        </div>
-    <% end %>
-</div>
+        <% end %>
+    </div>
 
-<% if @cards.empty? %>
+    <div class="is-flex is-justify-content-center">
+        <%== pagy_bulma_nav(@pagy) %>
+    </div>
+<% else %>
     <%= render 'shared/resource_not_found' %>
 <% end %>
