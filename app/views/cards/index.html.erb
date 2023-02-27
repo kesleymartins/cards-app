@@ -27,6 +27,7 @@
                 </header>
                 <footer class="card-footer">
                     <%= link_to 'Editar', edit_collection_card_path(@collection, card), class: 'card-footer-item' %>
+                    <%= link_to 'Remover', collection_card_path(@collection, card), data: { turbo_method: :delete }, class: 'card-footer-item' %>
                 </footer>
             </div>
         </div>
