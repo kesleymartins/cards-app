@@ -1,4 +1,4 @@
-<%= form_with(model: [collection, card], data: { turbo_frame: "_top"}) do |f| %>
+<%= form_with(model: [collection, card], id: 'cards_form', data: { turbo_frame: "_top"}) do |f| %>
   <%= render 'shared/form_errors', resource: card  %>
 
     <div class="field">

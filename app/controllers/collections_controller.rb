@@ -17,7 +17,13 @@ class CollectionsController < ApplicationController
     if @collection.save
       redirect_to collections_path, notice: "Coleção criada com sucesso!"
     else
-      render :new, status: :unprocessable_entity
+      render(
+        turbo_stream: turbo_stream.replace(
+          'collections_form', 
+          partial: 'collections/form', 
+          locals: { collection: @collection }
+        )
+      )
     end
   end
 
@@ -25,7 +31,13 @@ class CollectionsController < ApplicationController
     if @collection.update(collection_params)
       redirect_to collections_path, notice: "Collection atualizada com sucesso!"
     else
-      render :edit, status: :unprocessable_entity
+      render(
+        turbo_stream: turbo_stream.replace(
+          'collections_form', 
+          partial: 'collections/form', 
+          locals: { collection: @collection }
+        )
+      )
     end
   end
 

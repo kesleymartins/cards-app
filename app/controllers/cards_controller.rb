@@ -19,7 +19,13 @@ class CardsController < ApplicationController
     if @card.save
       redirect_to collection_cards_path(@collection), notice: 'Carta criada com sucesso!'
     else
-      render :new, status: :unprocessable_entity
+      render(
+        turbo_stream: turbo_stream.replace(
+          'cards_form', 
+          partial: 'cards/form', 
+          locals: { collection: @collection, card: @card }
+        )
+      )
     end
   end
 
@@ -27,7 +33,13 @@ class CardsController < ApplicationController
     if @card.update(card_params)
       redirect_to collection_cards_path(@collection), notice: 'Carta atualizada com sucesso!'
     else
-      render :edit, status: :unprocessable_entity
+      render(
+        turbo_stream: turbo_stream.replace(
+          'cards_form', 
+          partial: 'cards/form', 
+          locals: { collection: @collection, card: @card }
+        )
+      )
     end
   end
 
