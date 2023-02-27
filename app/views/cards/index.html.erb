@@ -9,7 +9,12 @@
 
   <div class="level-right">
     <p class="level-item">
-        <%= link_to 'Nova Carta', new_collection_card_path(@collection), data: { turbo_frame: "modal" }, class: 'button is-primary' %>
+        <%= link_to new_collection_card_path(@collection), data: { turbo_frame: "modal" }, class: 'button is-link' do %>
+            <span class="icon">
+                <i class="bi bi-plus-square"></i>
+            </span>
+            <span>Nova Carta</span>
+        <% end%>
     </p>
   </div>
 </div>
