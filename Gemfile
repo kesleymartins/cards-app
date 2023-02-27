@@ -9,6 +9,9 @@ gem "sqlite3", "~> 1.4"
 gem "puma", "~> 5.0"
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
+gem 'importmap-rails', '~> 1.1', '>= 1.1.5'
+gem 'turbo-rails', '~> 1.3', '>= 1.3.3'
+
 group :development do
 end
 
