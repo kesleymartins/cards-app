@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_27_183941) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_28_015751) do
   create_table "cards", force: :cascade do |t|
     t.text "question"
     t.text "awser"
@@ -25,6 +25,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_27_183941) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cycle_cards", force: :cascade do |t|
+    t.integer "status"
+    t.integer "cycle_id"
+    t.integer "card_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_cycle_cards_on_card_id"
+    t.index ["cycle_id"], name: "index_cycle_cards_on_cycle_id"
   end
 
   create_table "cycles", force: :cascade do |t|
