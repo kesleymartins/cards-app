@@ -1,18 +1,18 @@
 <div class="level">
   <div class="level-left">
     <div class="level-item">
-        <h2 class="subtitle is-2">Coleções</h2>
+      <h2 class="subtitle is-2">Coleções</h2>
     </div>
   </div>
 
   <div class="level-right">
     <p class="level-item">
-        <%= link_to new_collection_path, data: { turbo_frame: "modal" }, class: 'button is-link' do %>
-            <span class="icon">
-                <i class="bi bi-plus-square"></i>
-            </span>
-            <span>Nova Coleção</span>
-        <% end %>
+      <%= link_to new_collection_path, data: { turbo_frame: "modal" }, class: 'button is-link' do %>
+        <span class="icon">
+          <i class="bi bi-plus-square"></i>
+        </span>
+        <span>Nova Coleção</span>
+      <% end %>
     </p>
   </div>
 </div>
@@ -20,56 +20,65 @@
 <hr />
 
 <% unless @collections.empty? %>
-    <div class="columns is-multiline">
-        <% @collections.each do |collection| %>
-            <div class="column is-one-third">
-                <div class="card">
-                    <header class="card-header">
-                        <p class="card-header-title"><%= collection.title %></p>
-                        <div data-controller="dropdown" data-action="click->dropdown#toggle" class="dropdown is-right">
-                            <button class="card-header-icon" aria-label="more options">
-                                <span class="icon">
-                                    <i class="bi bi-caret-down-fill"></i>
-                                </span>
-                            </button>
-                            <div class="dropdown-menu" role="menu">
-                                <div class="dropdown-content">
-                                    <%= link_to collection_cards_path(collection), class: 'dropdown-item' do %>
-                                        <span class="icon is-small">
-                                            <i class="bi bi-files"></i>
-                                        </span>
-                                        <span>Cartas</span>
-                                    <% end %>
-                                    <%= link_to edit_collection_path(collection), data: { turbo_frame: "modal" }, class: 'dropdown-item' do %>
-                                        <span class="icon is-small">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </span>
-                                        <span>Editar</span>
-                                    <% end %>
-                                    <%= link_to collection_path(collection), data: { turbo_method: :delete }, class: 'dropdown-item' do %>
-                                        <span class="icon is-small">
-                                            <i class="bi bi-trash2"></i>
-                                        </span>
-                                        <span>Remover</span>
-                                    <% end %>
-                                </div>
-                            </div>
-                        </div>
-                    </header>
-                    <div class="card-content">
-                        <div class="content">
-                            <%= collection.description %>
-                        </div>
-                    </div>
+  <div class="columns is-multiline">
+    <% @collections.each do |collection| %>
+      <div class="column is-one-third">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              <%= collection.title %>
+            </p>
+            <div data-controller="dropdown" data-action="click->dropdown#toggle" class="dropdown is-right">
+            
+              <button class="card-header-icon" aria-label="more options">
+                <span class="icon">
+                  <i class="bi bi-caret-down-fill"></i>
+                </span>
+              </button>
+            
+              <div class="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+
+                  <%= link_to collection_cards_path(collection), class: 'dropdown-item' do %>
+                    <span class="icon is-small">
+                      <i class="bi bi-files"></i>
+                    </span>
+                    <span>Cartas</span>
+                  <% end %>
+
+                  <%= link_to edit_collection_path(collection), data: { turbo_frame: "modal" }, class: 'dropdown-item' do %>
+                    <span class="icon is-small">
+                      <i class="bi bi-pencil-square"></i>
+                    </span>
+                    <span>Editar</span>
+                  <% end %>
+
+                  <%= link_to collection_path(collection), data: { turbo_method: :delete }, class: 'dropdown-item' do %>
+                    <span class="icon is-small">
+                      <i class="bi bi-trash2"></i>
+                    </span>
+                    <span>Remover</span>
+                  <% end %>
+                
                 </div>
+              </div>
             </div>
-        <% end %>
-    </div>
-    <div class="is-flex is-justify-content-center">
-        <%== pagy_bulma_nav(@pagy) %>
-    </div>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              <%= collection.description %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="is-flex is-justify-content-center">
+    <%== pagy_bulma_nav(@pagy) %>
+  </div>
 <% else %>
-    <%= render 'shared/resource_not_found' %>
+  <%= render 'shared/resource_not_found' %>
 <% end %>
 
 <%= turbo_frame_tag "modal" %>
