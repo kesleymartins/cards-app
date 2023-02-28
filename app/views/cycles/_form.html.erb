@@ -1,0 +1,13 @@
+<%= form_with(model: [collection, cycle], id: 'cycles_form', data: { turbo_frame: '_top'}) do |f| %>
+  <%= render 'shared/form_errors', resource: cycle %>
+  
+  <div class="field">
+    <%= f.label :size, class: 'label' %>
+    <%= f.number_field :size, class: 'input' %>
+  </div>
+
+  <div class="field is-flex is-justify-content-end">
+    <%= link_to 'Cancelar', collections_path, class: 'button is-light mx-2' %>
+    <%= f.submit class: 'button is-success' %>
+  </div>
+<% end %>
