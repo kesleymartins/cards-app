@@ -59,6 +59,23 @@
                     </span>
                     <span>Remover</span>
                   <% end %>
+
+
+                  <% if collection.current_cycle %>
+                    <%= link_to nil, class: 'dropdown-item' do %>
+                      <span class="icon is-smal">
+                        <i class="bi bi-arrow-repeat"></i>
+                      </span>
+                      <span>Continuar Ciclo</span>
+                    <% end %>
+                  <% else %>
+                    <%= link_to new_collection_cycle_path(collection), data: { turbo_frame: "modal"}, class: 'dropdown-item' do %>
+                      <span class="icon is-smal">
+                        <i class="bi bi-arrow-repeat"></i>
+                      </span>
+                      <span>Iniciar Ciclo</span>
+                    <% end %>
+                  <% end %>
                 
                 </div>
               </div>
