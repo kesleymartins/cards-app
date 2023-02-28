@@ -8,5 +8,6 @@ RSpec.describe Cycle, type: :model do
 
   describe "associations" do
     it { should belong_to(:collection) }
+    it { should have_many(:cycle_cards).dependent(:destroy) }
   end
 end
