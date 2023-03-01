@@ -9,11 +9,7 @@ class Cycle < ApplicationRecord
   after_create :chose_cards
 
   def next_cycle_card
-    cycle_cards = self.cycle_cards.select do |cycle_card|
-      cycle_card.waiting?
-    end
-
-    cycle_cards.first
+    self.cycle_cards.select { |cycle_card| cycle_card.waiting? }.first
   end
 
   private
