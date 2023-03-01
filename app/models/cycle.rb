@@ -8,6 +8,14 @@ class Cycle < ApplicationRecord
 
   after_create :chose_cards
 
+  def next_cycle_card
+    cycle_cards = self.cycle_cards.select do |cycle_card|
+      cycle_card.waiting?
+    end
+
+    cycle_cards.first
+  end
+
   private
 
   def chose_cards
