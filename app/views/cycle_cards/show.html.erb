@@ -1,0 +1,25 @@
+<%= turbo_frame_tag :cycle_card_data do %>
+  <div class="box">
+    <div class="block has-text-justified">
+      <p class="is-size-4"><%= @cycle_card.card.question %></p>
+    </div>
+
+    <div class="has-text-centered">
+      <div class="block">
+        <%= link_to 'Mostrar Resposta', nil, class: 'button is-info is-light' %>
+      </div>
+
+      <div class="block">
+        <p class="is-size-5"><%= @cycle_card.card.awser %></p>
+      </div>
+
+      <div class="block is-flex is-justify-content-center	">
+        <div class="buttons">
+          <%= link_to 'Errei', nil, class: 'button is-danger is-light' %>
+          <%= link_to 'Pular', nil, class: 'button is-warning is-light' %>
+          <%= link_to 'Acertei', nil, class: 'button is-success is-light' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
