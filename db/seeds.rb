@@ -15,7 +15,7 @@
     50.times do
         Card.create!({
             question: Faker::Books::Dune.quote,
-            awser: Faker::Books::Dune.character,
+            answer: Faker::Books::Dune.character,
             collection: collection
         })
     end

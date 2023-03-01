@@ -6,15 +6,15 @@
 
     <div class="has-text-centered">
       <div class="block">
-        <button data-action="click->cycle-card#showAwser" class="button is-info is-light">
+        <button data-action="click->cycle-card#showAnswer" class="button is-info is-light">
           Mostrar Resposta
         </button>
       </div>
 
-      <div id="awser-block" class="block is-hidden">
+      <div id="answer-block" class="block is-hidden">
         <hr />
 
-        <p class="is-size-5"><%= @cycle_card.card.awser %></p>
+        <p class="is-size-5"><%= @cycle_card.card.answer %></p>
 
         <hr />
         <div class="is-flex is-justify-content-center	">
