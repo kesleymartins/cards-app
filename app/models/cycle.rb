@@ -22,8 +22,9 @@ class Cycle < ApplicationRecord
     avaliable_cards = self.collection.cards
     selected_cards = avaliable_cards.shuffle.slice(1..self.size)
 
-    selected_cards.each do |card|
+    selected_cards.each.with_index do |card, index|
       CycleCard.create!({
+        order: index,
         status: CycleCard.statuses[:waiting],
         card: card,
         cycle: self
