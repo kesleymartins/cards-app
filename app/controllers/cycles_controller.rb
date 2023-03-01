@@ -1,5 +1,5 @@
 class CyclesController < ApplicationController
-  before_action :set_collection
+  before_action :set_collection, except: %i[ show ]
   before_action :set_cycle, only: %i[ show ]
 
   def show; end
@@ -13,7 +13,7 @@ class CyclesController < ApplicationController
     @cycle.collection = @collection
     
     if @cycle.save
-      redirect_to collections_path, notice: "Ciclo iniciado com sucesso!"
+      redirect_to cycle_path(@cycle), notice: "Ciclo iniciado com sucesso!"
     else
       render :new, status: :unprocessable_entity
     end
