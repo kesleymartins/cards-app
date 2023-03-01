@@ -1,5 +1,8 @@
 class CyclesController < ApplicationController
   before_action :set_collection
+  before_action :set_cycle, only: %i[ show ]
+
+  def show; end
 
   def new
     @cycle = Cycle.new
@@ -20,6 +23,10 @@ class CyclesController < ApplicationController
 
   def cycle_params
     params.require(:cycle).permit(:size)
+  end
+
+  def set_cycle
+    @cycle = Cycle.find(params[:id])
   end
 
   def set_collection
