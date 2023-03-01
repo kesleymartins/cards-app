@@ -68,7 +68,7 @@
                       </span>
                       <span>Continuar Ciclo</span>
                     <% end %>
-                  <% else %>
+                  <% elsif collection.cards.size > 0 %>
                     <%= link_to new_collection_cycle_path(collection), data: { turbo_frame: "modal"}, class: 'dropdown-item' do %>
                       <span class="icon is-small">
                         <i class="bi bi-arrow-repeat"></i>
