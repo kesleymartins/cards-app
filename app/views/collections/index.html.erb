@@ -62,15 +62,15 @@
 
 
                   <% if collection.current_cycle %>
-                    <%= link_to nil, class: 'dropdown-item' do %>
-                      <span class="icon is-smal">
+                    <%= link_to collection_cycle_path(collection, collection.current_cycle), class: 'dropdown-item' do %>
+                      <span class="icon is-small">
                         <i class="bi bi-arrow-repeat"></i>
                       </span>
                       <span>Continuar Ciclo</span>
                     <% end %>
                   <% else %>
                     <%= link_to new_collection_cycle_path(collection), data: { turbo_frame: "modal"}, class: 'dropdown-item' do %>
-                      <span class="icon is-smal">
+                      <span class="icon is-small">
                         <i class="bi bi-arrow-repeat"></i>
                       </span>
                       <span>Iniciar Ciclo</span>
