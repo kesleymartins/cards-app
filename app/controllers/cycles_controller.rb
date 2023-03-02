@@ -1,6 +1,6 @@
 class CyclesController < ApplicationController
-  before_action :set_collection, except: %i[ show ]
-  before_action :set_cycle, only: %i[ show ]
+  before_action :set_collection, except: %i[ show next_card ]
+  before_action :set_cycle, only: %i[ show next_card ]
 
   def show; end
 
@@ -17,6 +17,18 @@ class CyclesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def next_card
+    render(
+      turbo_stream: turbo_stream.update(
+        :cycle_card, 
+        partial: 'cycle_cards/show', 
+        locals: { 
+          cycle_card: @cycle.next_cycle_card, 
+        }
+      )
+    )
   end
 
   private
