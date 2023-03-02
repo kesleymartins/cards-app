@@ -12,6 +12,14 @@ class Cycle < ApplicationRecord
     self.cycle_cards.select { |cycle_card| cycle_card.waiting? }.first
   end
 
+  def has_finished?
+    self.progress == self.size
+  end
+
+  def increase_progress!
+    self.update(progress: self.progress + 1)
+  end
+
   private
 
   def chose_cards
