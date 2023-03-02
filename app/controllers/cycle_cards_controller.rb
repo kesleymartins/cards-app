@@ -14,7 +14,7 @@ class CycleCardsController < ApplicationController
           :cycle_card, 
           partial: 'cycle_cards/show', 
           locals: { 
-            cycle_card: @cycle_card.cycle.next_cycle_card, 
+            cycle_card: nil, 
           }
         )
       )
