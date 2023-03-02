@@ -12,7 +12,7 @@
 
   <div class="level-right">
     <p class="level-item">
-      <%= link_to 'Buscar carta', cycle_card_path(@cycle.next_cycle_card), data: { turbo_frame: :cycle_card_data}, class: "button is-success" %>
+      <%= link_to 'Buscar carta', cycle_next_card_path(@cycle), class: "button is-success" %>
     </p>
   </div>
 </div>
@@ -22,5 +22,5 @@
 </div>
 
 <div class="block">
-  <%= turbo_frame_tag :cycle_card_data %>
+  <%= turbo_frame_tag :cycle_card %>
 </div>
