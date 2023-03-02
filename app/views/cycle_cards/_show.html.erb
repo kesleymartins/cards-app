@@ -1,0 +1,28 @@
+<div data-controller="cycle-card" class="box">
+  <div class="block has-text-justified">
+    <p class="is-size-4"><%= cycle_card.card.question %></p>
+  </div>
+
+  <div class="has-text-centered">
+    <div class="block">
+      <button data-cycle-card-target="button" class="button is-info is-light">
+        Mostrar Resposta
+      </button>
+    </div>
+
+    <div data-cycle-card-target="answerBlock" class="block is-hidden">
+      <hr />
+
+      <p class="is-size-5"><%= cycle_card.card.answer %></p>
+
+      <hr />
+      <div class="is-flex is-justify-content-center	">
+        <div class="buttons">
+          <%= link_to 'Errei', cycle_card_path(cycle_card), data: { turbo_method: :put }, class: 'button is-danger is-light' %>
+          <%= link_to 'Pular', cycle_card_path(cycle_card), data: { turbo_method: :put }, class: 'button is-warning is-light' %>
+          <%= link_to 'Acertei', cycle_card_path(cycle_card), data: { turbo_method: :put }, class: 'button is-success is-light' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
