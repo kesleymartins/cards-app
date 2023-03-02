@@ -13,7 +13,7 @@ class CyclesController < ApplicationController
     @cycle.collection = @collection
     
     if @cycle.save
-      redirect_to cycle_path(@cycle), notice: "Ciclo iniciado com sucesso!"
+      redirect_to cycle_path(@cycle)
     else
       render :new, status: :unprocessable_entity
     end
