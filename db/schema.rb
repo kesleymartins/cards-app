@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_03_172348) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_03_215109) do
   create_table "cards", force: :cascade do |t|
     t.text "question"
     t.text "answer"
@@ -28,7 +28,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_03_172348) do
   end
 
   create_table "cycle_cards", force: :cascade do |t|
-    t.integer "status"
     t.integer "cycle_id"
     t.integer "card_id"
     t.datetime "created_at", null: false
