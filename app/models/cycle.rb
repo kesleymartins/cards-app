@@ -32,7 +32,6 @@ class Cycle < ApplicationRecord
     selected_cards.each.with_index do |card, index|
       CycleCard.create!({
         order: index,
-        status: CycleCard.statuses[:waiting],
         card: card,
         cycle: self
       })
