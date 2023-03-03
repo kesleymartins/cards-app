@@ -1,7 +1,7 @@
 class CycleCardsController < ApplicationController
   def update
     @cycle_card = CycleCard.find(params[:id])
-    @cycle_card.answered!
+    @cycle_card.update(cycle_card_params)
 
     @cycle_card.cycle.increase_progress!
 
@@ -19,5 +19,11 @@ class CycleCardsController < ApplicationController
         )
       )
     end
+  end
+
+  private
+
+  def cycle_card_params
+    params.require(:cycle_card).permit(:card_answer)
   end
 end
