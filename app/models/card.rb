@@ -4,4 +4,5 @@ class Card < ApplicationRecord
 
     belongs_to :collection
     has_many :cycle_cards, dependent: :destroy
+    has_many :scores, dependent: :destroy
 end
