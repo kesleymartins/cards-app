@@ -6,6 +6,6 @@ class Collection < ApplicationRecord
   has_many :cycles, dependent: :destroy
 
   def current_cycle
-    self.cycles.find_by(status: Cycle.statuses[:created])
+    Cycle.find_by(collection: self)
   end
 end
