@@ -9,7 +9,10 @@ class Cycle < ApplicationRecord
   after_create :chose_cards
 
   def next_cycle_card
-    self.cycle_cards.select { |cycle_card| cycle_card.waiting? }.first
+    CycleCard.includes(:card).find_by(
+      cycle: self,
+      order: self.progress
+    ) 
   end
 
   def has_finished?
