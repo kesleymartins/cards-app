@@ -13,6 +13,7 @@ class CyclesController < ApplicationController
   def create
     @cycle = Cycle.new(cycle_params)
     @cycle.collection = @collection
+    @cycle.user = current_user
     
     if @cycle.save
       redirect_to cycle_path(@cycle)
