@@ -11,10 +11,16 @@ class CycleCard < ApplicationRecord
   private
 
   def score_card
-    score = Score.find_by(card: self.card)
+    score = Score.find_by(
+      card: self.card,
+      user: self.cycle.user
+    )
 
     unless score
-      score = Score.create!({card: self.card})
+      score = Score.create!({
+        card: self.card,
+        user: self.cycle.user
+      })
     end
 
     if self.card_answer == 'error'
