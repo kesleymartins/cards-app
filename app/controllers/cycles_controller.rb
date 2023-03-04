@@ -1,4 +1,6 @@
 class CyclesController < ApplicationController
+  before_action :authenticate_user!
+  
   before_action :set_collection, except: %i[ show next_card ]
   before_action :set_cycle, only: %i[ show next_card ]
 

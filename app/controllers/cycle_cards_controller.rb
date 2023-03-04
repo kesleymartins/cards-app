@@ -1,4 +1,6 @@
 class CycleCardsController < ApplicationController
+  before_action :authenticate_user!
+
   def update
     @cycle_card = CycleCard.find(params[:id])
     @cycle_card.update(cycle_card_params)

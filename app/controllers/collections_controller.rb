@@ -1,4 +1,6 @@
 class CollectionsController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_collection, only: %i[ edit update destroy ]
 
   def index
