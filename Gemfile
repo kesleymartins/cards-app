@@ -17,6 +17,7 @@ gem 'devise', '~> 4.9'
 
 group :development do
   gem 'bullet', '~> 7.0', '>= 7.0.7'
+  gem 'letter_opener', '~> 1.4', '>= 1.4.1'
 end
 
 group :test do
