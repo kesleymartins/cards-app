@@ -1,0 +1,24 @@
+<div class="box">
+  <h2 class="subtitle is-2 has-text-centered">
+    Reenviar informações confirmação
+  </h2>
+
+  <hr>
+
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :email, class: 'label' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'input' %>
+    </div>
+
+    <div class="field is-flex is-justify-content-flex-end">
+      <%= f.submit "Reenviar", class: 'button is-dark' %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>
+
+

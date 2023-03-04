@@ -1,0 +1,34 @@
+<div class="box">
+  <h2 class="subtitle is-2 has-text-centered">
+    Alterar senha
+  </h2>
+
+  <hr>
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= f.hidden_field :reset_password_token %>
+
+    <div class="field">
+      <%= f.label :password, "New password", class: 'label' %>
+
+      <% if @minimum_password_length %>
+        <em>(Minimo de <%= @minimum_password_length %> caracteres)</em>
+      <% end %>
+
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: 'input' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, "Confirm new password", class: 'label' %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input' %>
+    </div>
+
+    <div class="field is-flex is-justify-content-flex-end">
+      <%= f.submit "Alterar", class: 'button is-dark' %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>
+

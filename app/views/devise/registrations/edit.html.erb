@@ -1,0 +1,73 @@
+<div class="box">
+  <h2 class="subtitle is-2 has-text-centered">
+    Editar Conta
+  </h2>
+
+  <hr />
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :email, class: 'label' %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input' %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div class="field">
+        Aguardando a confirmação do email: <%= resource.unconfirmed_email %>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :password, class: 'label' %>
+      <i>(Deixe em branco se não quiser alterar)</i>
+      <%= f.password_field :password, autocomplete: "new-password", class: 'input' %>
+      
+      <% if @minimum_password_length %>
+        <em>Minimo de <%= @minimum_password_length %> caracteres</em>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, class: 'label' %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :current_password, class: 'label' %> 
+      <i>(Insira a sua senha atual para confirmar as mudanças)</i>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: 'input' %>
+    </div>
+
+    <div class="buttons is-flex is-justify-content-flex-end">
+      <%= link_to 'Cancelar', root_path, class: 'button is-light' %>
+      <%= f.submit "Atualizar", class: 'button is-success' %>
+    </div>
+  <% end %>
+</div>
+
+<div class="box">
+  <h3 class="subtitle is-3 has-text-centered">
+    Cancelar minha conta
+  </h3>
+
+  <hr />
+
+  <div class="block">
+    <p>Esta ação é irreverssível, todos os seus dados serão apagados!</p>
+  </div>
+
+  <div class="block">
+    <%= button_to "Cancelar minha conta", 
+      registration_path(resource_name), 
+        data: { 
+          confirm: "Tem certeza?", 
+          turbo_confirm: "Tem certeza?" 
+          }, method: :delete,
+          class: 'button is-danger'
+        %>
+  </div>
+</div>
+
+
