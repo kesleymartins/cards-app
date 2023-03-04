@@ -35,8 +35,25 @@
             </div>
 
             <div class="navbar-end">
-              <%= link_to 'Entrar', new_user_session_path, class: 'navbar-item' %>
-              <%= link_to 'Criar conta', new_user_registration_path, class: 'navbar-item' %>
+              <% if user_signed_in? %>
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <span class="navbar-link">
+                    Minha Conta
+                  </span>
+                  <div class="navbar-dropdown is-boxed">
+                    <%= link_to edit_user_registration_path, class: 'navbar-item' do %>
+                      Configurar conta
+                    <% end %>
+
+                    <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: 'navbar-item' do %>
+                      Sair
+                    <% end %>
+                  </div>
+                </div>
+              <% else %>
+                <%= link_to 'Entrar', new_user_session_path, class: 'navbar-item' %>
+                <%= link_to 'Criar conta', new_user_registration_path, class: 'navbar-item' %>
+              <% end %>
             </div>
           </div>
         </div>
