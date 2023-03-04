@@ -13,6 +13,7 @@ gem 'importmap-rails', '~> 1.1', '>= 1.1.5'
 gem 'turbo-rails', '~> 1.3', '>= 1.3.3'
 gem 'stimulus-rails', '~> 1.2', '>= 1.2.1'
 gem 'pagy', '~> 6.0', '>= 6.0.2'
+gem 'devise', '~> 4.9'
 
 group :development do
   gem 'bullet', '~> 7.0', '>= 7.0.7'
