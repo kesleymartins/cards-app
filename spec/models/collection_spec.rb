@@ -9,5 +9,6 @@ RSpec.describe Collection, type: :model do
   describe "associations" do
     it { should have_many(:cards).dependent(:destroy) }
     it { should have_many(:cycles).dependent(:destroy) }
+    it { should belong_to(:user) }
   end
 end

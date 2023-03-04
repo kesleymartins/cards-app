@@ -2,6 +2,8 @@ class Cycle < ApplicationRecord
   validates :size, presence: true, length: { minimum: 1 }
 
   belongs_to :collection
+  belongs_to :user
+  
   has_many :cycle_cards, dependent: :destroy
 
   after_create :chose_cards
