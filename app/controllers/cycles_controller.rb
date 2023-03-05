@@ -22,18 +22,6 @@ class CyclesController < ApplicationController
     end
   end
 
-  def next_card
-    render(
-      turbo_stream: turbo_stream.update(
-        :cycle_card, 
-        partial: 'cycle_cards/show', 
-        locals: { 
-          cycle_card: @cycle.next_cycle_card, 
-        }
-      )
-    )
-  end
-
   private
 
   def cycle_params
