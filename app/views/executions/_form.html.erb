@@ -1,0 +1,13 @@
+<%= form_with(model: [collection, execution], id: 'execution_form', data: { turbo_frame: "_top"}) do |f| %>
+  <%= render 'shared/form_errors', resource: execution  %>
+
+  <div class="field">
+    <%= f.label :size, class: 'label' %>
+    <%= f.text_area :size, rows: 1, class: 'textarea' %>
+  </div>
+
+  <div class="field is-flex is-justify-content-end">
+    <%= link_to 'Cancelar', root_path, class: 'button is-light mx-2' %>
+    <%= f.submit class: 'button is-success' %>
+  </div>
+<% end %>
