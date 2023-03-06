@@ -1,3 +1,5 @@
 class Execution < ApplicationRecord
-    belongs_to :cycles
+    validates :score, presence: true
+    
+    belongs_to :cycle
 end

@@ -1,6 +1,6 @@
 class Cycle < ApplicationRecord
   has_one :cycle
-  has_one :executions
+  has_one :execution
   belongs_to :card
 
   def next_cycle
