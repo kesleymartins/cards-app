@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_06_004630) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_06_011747) do
   create_table "cards", force: :cascade do |t|
     t.text "question"
     t.text "answer"
@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_004630) do
     t.integer "cycle_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "size", null: false
     t.index ["collection_id"], name: "index_executions_on_collection_id"
     t.index ["cycle_id"], name: "index_executions_on_cycle_id"
     t.index ["user_id"], name: "index_executions_on_user_id"
