@@ -1,13 +1,11 @@
 class Cycle < ApplicationRecord
-  has_one :cycle
   has_one :execution
   belongs_to :card
 
-  def next_cycle
-    self.card
-  end
+  has_one :cycle, class_name: 'Cycle', foreign_key: 'next_id'
+  belongs_to :manager, class_name: 'Cycle', optional: true
 
   def is_last?
-    self.card.nil?
+    self.next_id.nil?
   end
 end

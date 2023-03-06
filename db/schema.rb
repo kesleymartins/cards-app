@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_06_024048) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_06_170524) do
   create_table "cards", force: :cascade do |t|
     t.text "question"
     t.text "answer"
@@ -33,9 +33,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_024048) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "card_id", null: false
-    t.integer "cycle_id"
+    t.integer "next_id"
     t.index ["card_id"], name: "index_cycles_on_card_id"
-    t.index ["cycle_id"], name: "index_cycles_on_cycle_id"
+    t.index ["next_id"], name: "index_cycles_on_next_id"
   end
 
   create_table "executions", force: :cascade do |t|
@@ -75,7 +75,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_024048) do
 
   add_foreign_key "collections", "users"
   add_foreign_key "cycles", "cards"
-  add_foreign_key "cycles", "cycles"
+  add_foreign_key "cycles", "cycles", column: "next_id"
   add_foreign_key "executions", "collections"
   add_foreign_key "executions", "cycles"
   add_foreign_key "executions", "users"
