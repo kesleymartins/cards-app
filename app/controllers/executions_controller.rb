@@ -13,6 +13,11 @@ class ExecutionsController < ApplicationController
     @execution.collection = @collection
 
     if @execution.save
+      CyclesAlgorithm.new(
+        cards: @collection.cards, 
+        execution: @execution
+      ).send(:random)
+
       redirect_to cycle_path(@execution.cycle)
     else
       render(
