@@ -11,7 +11,7 @@ class CardsController < ApplicationController
   def new
     @card = Card.new
   end
-
+  
   def edit; end
 
   def create
