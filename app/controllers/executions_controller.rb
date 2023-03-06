@@ -1,7 +1,10 @@
 class ExecutionsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_collection
+  before_action :set_collection, only: %i[ new create ]
+  before_action :set_execution, only: %i[ show ]
+
+  def show; end
 
   def new
     @execution = Execution.new
@@ -18,7 +21,7 @@ class ExecutionsController < ApplicationController
         execution: @execution
       ).send(:random)
 
-      redirect_to cycle_path(@execution.cycle)
+      redirect_to @execution
     else
       render(
         turbo_stream: turbo_stream.replace(
@@ -34,6 +37,10 @@ class ExecutionsController < ApplicationController
 
   def execution_params
     params.require(:execution).permit(:size)
+  end
+
+  def set_execution
+    @execution = Execution.find(params[:id])
   end
 
   def set_collection

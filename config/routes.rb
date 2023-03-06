@@ -13,8 +13,9 @@ Rails.application.routes.draw do
 
   resources :collections, except: %i[ show ] do
     resources :cards, except: %i[ show ]
-    resources :executions, only: %i[ new create]
+    resources :executions, shallow: true, only: %i[ new create show ]
     
-    resources :cycles, only: %i[ new create show ]
   end
+
+  resources :cycles, only: %i[ show update ]
 end
