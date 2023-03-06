@@ -1,0 +1,23 @@
+<div class="level">
+  <div class="level-left">
+    <div class="level-item">
+      <h2 class="subtitle is-2">
+        <%= @execution.collection.title %>
+      </h2>
+    </div>
+  </div>
+
+  <div class="level-right">
+    <p class="level-item">
+      <%= link_to 'Buscar carta', cycle_path(@execution.cycle), class: "button is-success" %>
+    </p>
+  </div>
+</div>
+
+<div class="block">
+  <progress class="progress is-small" value="3" max="<%= @execution.size %>"></progress>
+</div>
+
+<div class="block">
+  <%= turbo_frame_tag :cycle %>
+</div>
