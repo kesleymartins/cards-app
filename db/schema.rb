@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_06_011747) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_06_024048) do
   create_table "cards", force: :cascade do |t|
     t.text "question"
     t.text "answer"
@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_011747) do
     t.integer "score", default: 0
     t.integer "user_id", null: false
     t.integer "collection_id", null: false
-    t.integer "cycle_id", null: false
+    t.integer "cycle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "size", null: false
