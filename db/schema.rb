@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_06_001848) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_06_004630) do
   create_table "cards", force: :cascade do |t|
     t.text "question"
     t.text "answer"
@@ -38,6 +38,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_001848) do
     t.index ["cycle_id"], name: "index_cycles_on_cycle_id"
   end
 
+  create_table "executions", force: :cascade do |t|
+    t.integer "score", default: 0
+    t.integer "user_id", null: false
+    t.integer "collection_id", null: false
+    t.integer "cycle_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collection_id"], name: "index_executions_on_collection_id"
+    t.index ["cycle_id"], name: "index_executions_on_cycle_id"
+    t.index ["user_id"], name: "index_executions_on_user_id"
+  end
+
   create_table "scores", force: :cascade do |t|
     t.integer "value", default: 0
     t.integer "card_id"
@@ -63,5 +75,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_001848) do
   add_foreign_key "collections", "users"
   add_foreign_key "cycles", "cards"
   add_foreign_key "cycles", "cycles"
+  add_foreign_key "executions", "collections"
+  add_foreign_key "executions", "cycles"
+  add_foreign_key "executions", "users"
   add_foreign_key "scores", "users"
 end
