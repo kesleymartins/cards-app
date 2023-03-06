@@ -1,4 +1,4 @@
 class Cycle < ApplicationRecord
-  belongs_to :collection
-  belongs_to :user
+  belongs_to :card
+  one_one :cycle
 end
