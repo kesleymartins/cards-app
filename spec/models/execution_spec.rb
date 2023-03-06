@@ -7,6 +7,8 @@ RSpec.describe Execution, type: :model do
   end
 
   describe "associations" do
-    it { should belong_to(:cycle) }
+    it { should belong_to(:user) }
+    it { should belong_to(:collection) }
+    it { should belong_to(:cycle).optional }
   end
 end
