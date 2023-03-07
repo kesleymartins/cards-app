@@ -1,40 +1,13 @@
 class Cycle < ApplicationRecord
-  validates :size, presence: true, length: { minimum: 1 }
+  attribute :type, :string
 
-  belongs_to :collection
-  belongs_to :user
-  
-  has_many :cycle_cards, dependent: :destroy
+  has_one :execution
+  belongs_to :card
 
-  after_create :chose_cards
+  has_one :cycle, class_name: 'Cycle', foreign_key: 'next_id'
+  belongs_to :manager, class_name: 'Cycle', optional: true
 
-  def next_cycle_card
-    CycleCard.includes(:card).find_by(
-      cycle: self,
-      order: self.progress
-    ) 
-  end
-
-  def has_finished?
-    self.progress == self.size
-  end
-
-  def increase_progress!
-    self.update(progress: self.progress + 1)
-  end
-
-  private
-
-  def chose_cards
-    avaliable_cards = self.collection.cards
-    selected_cards = avaliable_cards.shuffle.slice(1..self.size)
-
-    selected_cards.each.with_index do |card, index|
-      CycleCard.create!({
-        order: index,
-        card: card,
-        cycle: self
-      })
-    end
+  def is_last?
+    self.next_id.nil?
   end
 end

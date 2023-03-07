@@ -8,7 +8,7 @@ RSpec.describe Card, type: :model do
 
   context "associations" do
     it { should belong_to(:collection) }
-    it { should have_many(:cycle_cards).dependent(:destroy) }
+    it { should have_many(:cycles).dependent(:destroy) }
     it { should have_many(:scores).dependent(:destroy) }
   end
 end

@@ -5,9 +5,17 @@ class Collection < ApplicationRecord
   belongs_to :user
 
   has_many :cards, dependent: :destroy
-  has_many :cycles, dependent: :destroy
+  has_many :executions, dependent: :destroy
 
-  def current_cycle
-    Cycle.find_by(collection: self)
+  def can_execute?
+    not self.cards.empty?
+  end
+
+  def execution
+    Execution.find_by(
+      collection: self,
+      user: self.user,
+      status: ExecutionStatus::RUNNING
+    )
   end
 end

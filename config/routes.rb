@@ -13,11 +13,9 @@ Rails.application.routes.draw do
 
   resources :collections, except: %i[ show ] do
     resources :cards, except: %i[ show ]
-
-    resources :cycles, only: %i[ new create show ], shallow: true do
-      resources :cycle_cards, only: %i[ update ], shallow: true
-    end
+    resources :executions, shallow: true, only: %i[ new create show ]
+    
   end
 
-  get 'cycles/:id/next-card', to: 'cycles#next_card', as: :cycle_next_card
+  resources :cycles, only: %i[ show update ]
 end

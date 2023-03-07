@@ -1,0 +1,5 @@
+en:
+  enumerations:
+    execution_status:
+      running: 'Running'
+      closed: 'Closed'

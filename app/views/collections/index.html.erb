@@ -59,24 +59,26 @@
                     </span>
                     <span>Remover</span>
                   <% end %>
+                  
+                  <% if collection.can_execute?  %>
+                    <% if collection.execution %>
+                      <%= link_to collection.execution, data: { turbo_frame: "modal"}, class: 'dropdown-item' do %>
+                        <span class="icon is-small">
+                          <i class="bi bi-arrow-repeat"></i>
+                        </span>
+                        <span>Continuar</span>
+                      <% end %>
+                      
+                    <% else %>
 
-
-                  <% if collection.current_cycle %>
-                    <%= link_to cycle_path(collection.current_cycle), class: 'dropdown-item' do %>
-                      <span class="icon is-small">
-                        <i class="bi bi-arrow-repeat"></i>
-                      </span>
-                      <span>Continuar Ciclo</span>
-                    <% end %>
-                  <% elsif collection.cards.size > 0 %>
-                    <%= link_to new_collection_cycle_path(collection), data: { turbo_frame: "modal"}, class: 'dropdown-item' do %>
-                      <span class="icon is-small">
-                        <i class="bi bi-arrow-repeat"></i>
-                      </span>
-                      <span>Iniciar Ciclo</span>
+                      <%= link_to new_collection_execution_path(collection), data: { turbo_frame: "modal" }, class: 'dropdown-item' do %>
+                        <span class="icon is-small">
+                          <i class="bi bi-arrow-repeat"></i>
+                        </span>
+                        <span>Estudar</span>
+                      <% end %>
                     <% end %>
                   <% end %>
-                
                 </div>
               </div>
             </div>

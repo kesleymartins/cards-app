@@ -1,0 +1,50 @@
+<%= turbo_frame_tag :cycle do %>
+  <div data-controller="cycle" class="box">
+    <div class="block has-text-justified">
+      <p class="is-size-4"><%= cycle.card.question %></p>
+    </div>
+
+    <div class="has-text-centered">
+      <div class="block">
+        <button id="show-card-button" class="button is-info is-light">
+          Mostrar Carta
+        </button>
+      </div>
+
+      <div id="card-answer-block" class="block is-hidden">
+        <hr />
+
+        <p class="is-size-5"><%= cycle.card.answer %></p>
+
+        <hr />
+      </div>
+
+      <div id="cycle-actions" class="is-flex is-justify-content-center is-hidden">
+        <div class="buttons">
+          <%= form_with(model: cycle) do |f| %>
+            <%= f.hidden_field :type, value: :error %>
+          
+            <%= f.submit 'Errei', class: 'button is-danger is-light' %>
+          <% end %>
+          
+          <%= form_with(model: cycle) do |f| %>
+            <%= f.hidden_field :type, value: :success %>
+          
+            <%= f.submit 'Acertei', class: 'button is-success is-light' %>
+          <% end %>
+        </div>
+      </div>
+
+      <div id="next-cycle-button" class="is-flex is-justify-content-center is-hidden">
+        <% unless cycle.is_last? %>
+          <div class="buttons">
+            <%= link_to 'Próxima Carta', 
+              cycle_path(cycle.next_id), 
+              class: 'button is-success is-light' 
+            %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

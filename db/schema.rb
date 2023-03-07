@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_04_165104) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_07_032352) do
   create_table "cards", force: :cascade do |t|
     t.text "question"
     t.text "answer"
@@ -29,25 +29,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_04_165104) do
     t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
-  create_table "cycle_cards", force: :cascade do |t|
-    t.integer "cycle_id"
-    t.integer "card_id"
+  create_table "cycles", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "order"
-    t.index ["card_id"], name: "index_cycle_cards_on_card_id"
-    t.index ["cycle_id"], name: "index_cycle_cards_on_cycle_id"
+    t.integer "card_id", null: false
+    t.integer "next_id"
+    t.index ["card_id"], name: "index_cycles_on_card_id"
+    t.index ["next_id"], name: "index_cycles_on_next_id"
   end
 
-  create_table "cycles", force: :cascade do |t|
-    t.integer "size"
-    t.integer "collection_id"
+  create_table "executions", force: :cascade do |t|
+    t.integer "score", default: 0
+    t.integer "user_id", null: false
+    t.integer "collection_id", null: false
+    t.integer "cycle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "progress", default: 0
-    t.integer "user_id", null: false
-    t.index ["collection_id"], name: "index_cycles_on_collection_id"
-    t.index ["user_id"], name: "index_cycles_on_user_id"
+    t.integer "size", null: false
+    t.string "status", null: false
+    t.index ["collection_id"], name: "index_executions_on_collection_id"
+    t.index ["cycle_id"], name: "index_executions_on_cycle_id"
+    t.index ["user_id"], name: "index_executions_on_user_id"
   end
 
   create_table "scores", force: :cascade do |t|
@@ -73,6 +75,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_04_165104) do
   end
 
   add_foreign_key "collections", "users"
-  add_foreign_key "cycles", "users"
+  add_foreign_key "cycles", "cards"
+  add_foreign_key "cycles", "cycles", column: "next_id"
+  add_foreign_key "executions", "collections"
+  add_foreign_key "executions", "cycles"
+  add_foreign_key "executions", "users"
   add_foreign_key "scores", "users"
 end
