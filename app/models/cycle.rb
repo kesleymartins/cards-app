@@ -1,4 +1,6 @@
 class Cycle < ApplicationRecord
+  attribute :type, :string
+
   has_one :execution
   belongs_to :card
 
