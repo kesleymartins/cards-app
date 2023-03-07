@@ -31,7 +31,7 @@
         </thead>
         <tbody>
             <% @cards.each do |card| %>
-                <tr>
+                <tr id="<%= dom_id(card) %>">
                     <td><%= card.question %></td>
                     <td>
                         <div data-controller="dropdown" data-action="click->dropdown#toggle" class="dropdown">

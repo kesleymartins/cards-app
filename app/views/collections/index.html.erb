@@ -22,7 +22,7 @@
 <% unless @collections.empty? %>
   <div class="columns is-multiline">
     <% @collections.each do |collection| %>
-      <div class="column is-one-third">
+      <div id="<%= dom_id(collection) %>" class="column is-one-third">
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
