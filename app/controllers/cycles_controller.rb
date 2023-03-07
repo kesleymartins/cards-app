@@ -18,9 +18,11 @@ class CyclesController < ApplicationController
       user: current_user
     ).call(type: cycle_params[:type])
 
+    CycleLinker.new(cycle: @cycle).call(type: cycle_params[:type])
+
     if @cycle.is_last?
       redirect_to root_path
-    end
+    end 
   end
 
   private
