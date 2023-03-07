@@ -1,18 +1,18 @@
 <%= form_with(model: [collection, card], id: 'cards_form', data: { turbo_frame: "_top"}) do |f| %>
   <%= render 'shared/form_errors', resource: card  %>
 
-    <div class="field">
-        <%= f.label :question, class: 'label' %>
-        <%= f.text_area :question, rows: 1, class: 'textarea' %>
-    </div>
+  <div class="field">
+    <%= f.label :question, class: 'label' %>
+    <%= f.text_area :question, rows: 1, class: 'textarea' %>
+  </div>
 
-    <div class="field">
-        <%= f.label :answer, class: 'label' %>
-        <%= f.text_area :answer, class: 'textarea' %>
-    </div>
+  <div class="field">
+    <%= f.label :answer, class: 'label' %>
+    <%= f.text_area :answer, class: 'textarea' %>
+  </div>
 
-    <div class="field is-flex is-justify-content-end">
-        <%= link_to 'Cancelar', collection_cards_path(collection), class: 'button is-light mx-2' %>
-        <%= f.submit class: 'button is-success' %>
-    </div>
+  <div class="field is-flex is-justify-content-end">
+    <%= link_to 'Cancelar', collection_cards_path(collection), class: 'button is-light mx-2' %>
+    <%= f.submit class: 'button is-success' %>
+  </div>
 <% end %>
