@@ -9,12 +9,16 @@
 
   <div class="level-right">
     <p class="level-item">
-        <%= link_to new_collection_card_path(@collection), data: { turbo_frame: "modal" }, class: 'button is-link' do %>
-            <span class="icon">
-                <i class="bi bi-plus-square"></i>
-            </span>
-            <span>Nova Carta</span>
-        <% end%>
+        <div class="buttons">
+            <%= link_to 'Voltar', collections_path(@collection), data: { turbo_frame: "modal" }, class: 'button is-dark is-outlined' %>
+
+            <%= link_to new_collection_card_path(@collection), data: { turbo_frame: "modal" }, class: 'button is-link' do %>
+                <span class="icon">
+                    <i class="bi bi-plus-square"></i>
+                </span>
+                <span>Nova Carta</span>
+            <% end%>
+        </div>
     </p>
   </div>
 </div>
