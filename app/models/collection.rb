@@ -14,7 +14,8 @@ class Collection < ApplicationRecord
   def execution
     Execution.find_by(
       collection: self,
-      user: self.user
+      user: self.user,
+      status: ExecutionStatus::RUNNING
     )
   end
 end
