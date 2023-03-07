@@ -13,12 +13,21 @@ class CyclesController < ApplicationController
   end
 
   def update
+    ScoreCard.new(
+      cycle: @cycle, 
+      user: current_user
+    ).call(type: cycle_params[:type])
+
     if @cycle.is_last?
       redirect_to root_path
     end
   end
 
   private
+
+  def cycle_params
+    params.require(:cycle).permit(:type)
+  end
 
   def set_cycle
     @cycle = Cycle.find(params[:id])
