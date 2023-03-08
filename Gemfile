@@ -19,6 +19,7 @@ gem 'enumerate_it', '~> 3.2', '>= 3.2.2'
 group :development do
   gem 'bullet', '~> 7.0', '>= 7.0.7'
   gem 'letter_opener', '~> 1.4', '>= 1.4.1'
+  gem 'fuubar', '~> 2.5', '>= 2.5.1'
 end
 
 group :test do
