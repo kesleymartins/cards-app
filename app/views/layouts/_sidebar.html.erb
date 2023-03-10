@@ -5,13 +5,13 @@
     </p>
     <ul class="menu-list">
       <li>
-        <%= link_to 'Minhas', collections_path({type: 'own'}), id: 'own' %>
+        <%= link_to 'Minhas', owned_collections_path %>
       </li>
       <li>
-        <%= link_to 'Favoritas', collections_path({type: 'favorites'}), id: 'favorites' %>
+        <%= link_to 'Favoritas', favorite_collections_path %>
       </li>
       <li>
-        <%= link_to 'Públicas', collections_path({type: 'public'}), id: 'public' %>
+        <%= link_to 'Públicas', public_collections_path %>
       </li>
     </ul>
   </aside>
