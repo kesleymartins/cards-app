@@ -1,28 +1,20 @@
-<div class="level">
-  <div class="level-left">
-    <div class="level-item">
-      <h2 class="subtitle is-2">Coleções</h2>
-    </div>
-  </div>
+<%= content_for :page_title do %>
+  Coleções
+<% end %>
 
-  <div class="level-right">
-    <p class="level-item">
-      <%= link_to new_collection_path, data: { turbo_frame: "modal" }, class: 'button is-link' do %>
-        <span class="icon">
-          <i class="bi bi-plus-square"></i>
-        </span>
-        <span>Nova Coleção</span>
-      <% end %>
-    </p>
-  </div>
-</div>
-
-<hr />
+<%= content_for :page_actions do %>
+  <%= link_to new_collection_path, data: { turbo_frame: "modal" }, class: 'button is-link' do %>
+    <span class="icon">
+      <i class="bi bi-plus-square"></i>
+    </span>
+    <span>Nova Coleção</span>
+  <% end %>
+<% end %>
 
 <% unless @collections.empty? %>
   <div class="columns is-multiline">
     <% @collections.each do |collection| %>
-      <div id="<%= dom_id(collection) %>" class="column is-one-third">
+      <div id="<%= dom_id(collection) %>" class="column is-12-tablet is-6-desktop is-4-widescreen">
         <div class="card">
           <header class="card-header">
             <p class="card-header-title">
@@ -39,8 +31,7 @@
               </p>
             <% end %>
 
-            <div data-controller="dropdown" data-action="click->dropdown#toggle" class="dropdown is-right">
-            
+            <div class="dropdown is-hoverable is-right">
               <button class="card-header-icon" aria-label="more options">
                 <span class="icon">
                   <i class="bi bi-caret-down-fill"></i>
@@ -49,7 +40,6 @@
             
               <div class="dropdown-menu" role="menu">
                 <div class="dropdown-content">
-
                   <%= link_to collection_cards_path(collection), class: 'dropdown-item' do %>
                     <span class="icon is-small">
                       <i class="bi bi-files"></i>
