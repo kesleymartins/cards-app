@@ -168,6 +168,10 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    ransack (4.0.0)
+      activerecord (>= 6.1.5)
+      activesupport (>= 6.1.5)
+      i18n
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -233,6 +237,7 @@ DEPENDENCIES
   pagy (~> 6.0, >= 6.0.2)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
+  ransack (~> 4.0)
   rspec-rails (~> 6.0.0)
   shoulda-matchers (~> 5.3)
   sprockets-rails
