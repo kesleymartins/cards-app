@@ -15,68 +15,43 @@
 
   <body>
     <header>
-      <nav class="navbar has-shadow" data-controller="navbar">
-        <div class="container">
-          <div class="navbar-brand">
-            <%= link_to 'Cards App', root_path, class: 'title is-2 navbar-item' %>
-          
-            <a class="navbar-burger" data-navbar-target="navburger">
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-            </a>
-          </div>
-
-          <div class="navbar-menu" data-navbar-target="navmenu">
-            <div class="navbar-start">
-              <% if user_signed_in? %>
-                <%= link_to 'Coleções', collections_path, class: 'navbar-item' %>
-              <% end %>
-            </div>
-
-            <div class="navbar-end">
-              <% if user_signed_in? %>
-                <div class="navbar-item has-dropdown is-hoverable">
-                  <span class="navbar-link">
-                    Minha Conta
-                  </span>
-                  <div class="navbar-dropdown is-boxed">
-                    <%= link_to edit_user_registration_path, class: 'navbar-item' do %>
-                      Configurar conta
-                    <% end %>
-
-                    <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: 'navbar-item' do %>
-                      Sair
-                    <% end %>
-                  </div>
-                </div>
-              <% else %>
-                <%= link_to 'Entrar', new_user_session_path, class: 'navbar-item' %>
-                <%= link_to 'Criar conta', new_user_registration_path, class: 'navbar-item' %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <%= render 'layouts/navbar' %>
     </header>
-
+  
     <main class="container">
-      <div class="my-6">
-        <% if alert %>
-          <div class="notification is-danger is-light">
-            <p><%= alert %></p>
-          </div>
-        <% end %>
-
-        <% if notice %>
-          <div class="notification is-success is-light">
-            <p><%= notice %></p>
-          </div>
-        <% end %>
+      <div class="my-5">
+        <%= render 'layouts/flashmessage' %>
       </div>
 
-      <%= yield %>
-    </main>
+      <%# --- page top content --- %>
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <h2 class="subtitle is-2">
+              <%= yield :page_title %>
+            </h2>
+          </div>
+        </div>
 
+        <div class="level-right">
+          <p class="level-item">
+            <%= yield :page_actions %>
+          </p>
+        </div>
+      </div>
+      <%# --- page top content --- %>
+
+      <div class="columns">
+        <% if user_signed_in? %>
+          <%= render 'layouts/sidebar' %>
+        <% end %>
+
+        <div class="column">
+          <%= yield :page_filter %>
+
+          <%= yield %>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
