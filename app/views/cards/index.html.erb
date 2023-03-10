@@ -1,32 +1,18 @@
-<div class="level">
-  <div class="level-left">
-    <div class="level-item">
-      <h2 class="subtitle is-2">
-        <%= @collection.title %>
-      </h2>
-    </div>
-  </div>
+<%= content_for :page_title do %>
+  Cartas - <%= @collection.title %>
+<% end %>
 
-  <div class="level-right">
-    <p class="level-item">
-      <%= link_to 'Voltar', collections_path(@collection), data: { turbo_frame: "modal" }, class: 'button is-dark is-outlined' %>
-    </p>
-    <p class="level-item">
-
-      <%= link_to new_collection_card_path(@collection), data: { turbo_frame: "modal" }, class: 'button is-link' do %>
-        <span class="icon">
-          <i class="bi bi-plus-square"></i>
-        </span>
-        <span>Nova Carta</span>
-      <% end%>
-    </p>
-  </div>
-</div>
-
-<hr />
+<%= content_for :page_actions do %>
+  <%= link_to new_collection_card_path(@collection), data: { turbo_frame: "modal" }, class: 'button is-link' do %>
+    <span class="icon">
+      <i class="bi bi-plus-square"></i>
+    </span>
+    <span>Nova Carta</span>
+  <% end %>
+<% end %>
 
 <% unless @cards.empty? %>
-  <table class="table is-fullwidth is-hoverable">
+  <table class="table is-fullwidth is-hoverable is-bordered">
     <thead>
       <tr>
         <th>Questão</th>
