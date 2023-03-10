@@ -10,6 +10,9 @@ class Collection < ApplicationRecord
   has_many :cards, dependent: :destroy
   has_many :executions, dependent: :destroy
 
+  scope :only_public, -> { where(privacy: Privacy::PUBLIC) }
+  scope :owned_by, -> (owner) { where(user: owner) }
+
   def can_execute?
     not self.cards.empty?
   end
