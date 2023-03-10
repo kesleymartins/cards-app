@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root 'collections#index'
+      root 'collections#owned'
     end
   
     unauthenticated do
@@ -11,10 +11,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :collections, except: %i[ show ] do
+  resources :collections, except: %i[ index show ] do
     resources :cards, except: %i[ show ]
     resources :executions, shallow: true, only: %i[ new create show ]
-    
+  end
+
+  scope :collections do
+    get '/public', to: 'collections#public', as: :public_collections
+    get '/favorites', to: 'collections#favorites', as: :favorite_collections
+    get '/owned', to: 'collections#owned', as: :owned_collections
   end
 
   resources :cycles, only: %i[ show update ]
