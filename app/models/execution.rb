@@ -1,11 +1,13 @@
 class Execution < ApplicationRecord
+  has_enumeration_for :status, with: ExecutionStatus
+
   validates :score, presence: true
   validates :size, presence: true
 
   belongs_to :collection
   belongs_to :user
   belongs_to :cycle, optional: true
-
+  
   before_create :set_default_status, :fix_size
 
   private
