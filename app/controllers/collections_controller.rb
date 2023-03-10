@@ -3,9 +3,21 @@ class CollectionsController < ApplicationController
 
   before_action :set_collection, only: %i[ edit update destroy ]
 
-  def index
-    @collections = CollectionFilter.new(user: current_user).call(type: params[:type])
+  def public
+    @collections = Collection.includes([:user, :cards]).only_public.latest
 
+    @pagy, @collections = pagy(@collections)
+  end
+
+  def favorites
+    @collections = Collection.includes([:user, :cards]).latest
+    
+    @pagy, @collections = pagy(@collections)
+  end
+
+  def owned
+    @collections = Collection.includes([:user, :cards]).owned_by(current_user).latest
+    
     @pagy, @collections = pagy(@collections)
   end
 
