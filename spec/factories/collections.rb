@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :collection do
     title { Faker::Games::WorldOfWarcraft.hero }
     description { Faker::Games::WorldOfWarcraft.quote }
+    privacy { Privacy::PUBLIC }
     association :user
 
     factory :collection_with_cards do
