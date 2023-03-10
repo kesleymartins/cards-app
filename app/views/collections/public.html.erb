@@ -1,0 +1,28 @@
+<%= content_for :page_title do %>
+  Coleções
+<% end %>
+
+<%= content_for :page_actions do %>
+  <%= link_to new_collection_path, data: { turbo_frame: "modal" }, class: 'button is-link' do %>
+    <span class="icon">
+      <i class="bi bi-plus-square"></i>
+    </span>
+    <span>Nova Coleção</span>
+  <% end %>
+<% end %>
+
+<% unless @collections.empty? %>
+  <div class="columns is-multiline">
+    <% @collections.each do |collection| %>
+      <%= render 'collection', collection: collection %>
+    <% end %>
+  </div>
+  
+  <div class="is-flex is-justify-content-center">
+    <%== pagy_bulma_nav(@pagy) %>
+  </div>
+<% else %>
+  <%= render 'shared/not_found' %>
+<% end %>
+
+<%= turbo_frame_tag "modal" %>
