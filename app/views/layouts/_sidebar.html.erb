@@ -1,0 +1,18 @@
+<div class="column is-4-tablet is-3-desktop is-2-widescreen">
+  <aside data-controller="sidebar" class="box menu">
+    <p class="menu-label">
+      Coleções
+    </p>
+    <ul class="menu-list">
+      <li>
+        <%= link_to 'Minhas', collections_path({type: 'own'}), id: 'own' %>
+      </li>
+      <li>
+        <%= link_to 'Favoritas', collections_path({type: 'favorites'}), id: 'favorites' %>
+      </li>
+      <li>
+        <%= link_to 'Públicas', collections_path({type: 'public'}), id: 'public' %>
+      </li>
+    </ul>
+  </aside>
+</div>
