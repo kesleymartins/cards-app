@@ -28,6 +28,17 @@
             <p class="card-header-title">
               <%= collection.title %>
             </p>
+
+            <% if collection.public? %>
+              <p class="tag my-3 is-info is-light">
+                Public
+              </p>
+            <% elsif collection.private? %>
+              <p class="tag my-3 is-dark">
+                Private
+              </p>
+            <% end %>
+
             <div data-controller="dropdown" data-action="click->dropdown#toggle" class="dropdown is-right">
             
               <button class="card-header-icon" aria-label="more options">
