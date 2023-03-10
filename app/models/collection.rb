@@ -1,6 +1,9 @@
 class Collection < ApplicationRecord
+  has_enumeration_for :privacy, create_helpers: true
+  
   validates :title, presence: true
   validates :description, presence: true
+  validates :privacy, presence: true
 
   belongs_to :user
 
