@@ -4,7 +4,9 @@ class CollectionsController < ApplicationController
   before_action :set_collection, only: %i[ edit update destroy ]
 
   def index
-    @pagy, @collections = pagy(Collection.includes([:user, :cards]).by_user(current_user).latest)
+    @collections = CollectionFilter.new(user: current_user).call(type: params[:type])
+
+    @pagy, @collections = pagy(@collections)
   end
 
   def new
