@@ -15,6 +15,7 @@ user = User.create!({
     collection = Collection.create!({
         title: Faker::Games::WorldOfWarcraft.hero,
         description: Faker::Games::WorldOfWarcraft.quote,
+        privacy: rand(0..1) == 1 ? Privacy::PUBLIC : Privacy::PRIVATE,
         user: user
     })
 
