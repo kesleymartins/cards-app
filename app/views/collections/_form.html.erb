@@ -11,6 +11,10 @@
     <%= form.text_area :description, class: 'textarea' %>
   </div>
 
+  <div class="select">
+    <%= form.select(:privacy, options_for_select(Privacy.to_a, collection.privacy)) %>
+  </div>
+
   <div class="field is-flex is-justify-content-end">
     <%= link_to 'Cancelar', collections_path, class: 'button is-light mx-2' %>
     <%= form.submit class: 'button is-success' %>
