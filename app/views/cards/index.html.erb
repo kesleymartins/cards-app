@@ -2,12 +2,14 @@
   Cartas - <%= @collection.title %>
 <% end %>
 
-<%= content_for :page_actions do %>
-  <%= link_to new_collection_card_path(@collection), data: { turbo_frame: "modal" }, class: 'button is-link' do %>
-    <span class="icon">
-      <i class="bi bi-plus-square"></i>
-    </span>
-    <span>Nova Carta</span>
+<% if policy(@collection).create_card? %>
+  <%= content_for :page_actions do %>
+    <%= link_to new_collection_card_path(@collection), data: { turbo_frame: "modal" }, class: 'button is-link' do %>
+      <span class="icon">
+        <i class="bi bi-plus-square"></i>
+      </span>
+      <span>Nova Carta</span>
+    <% end %>
   <% end %>
 <% end %>
 
@@ -24,33 +26,41 @@
         <tr id="<%= dom_id(card) %>">
           <td><%= card.question %></td>
           <td>
-            <div data-controller="dropdown" data-action="click->dropdown#toggle" class="dropdown">
-              <div class="dropdown-trigger">
-                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-                  <span>Ação</span>
-                  <span class="icon is-small">
-                    <i class="bi bi-caret-down-fill"></i>
-                  </span>
-                </button>
-              </div>
-              <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-                <div class="dropdown-content">
-                  <%= link_to edit_collection_card_path(@collection, card), data: { turbo_frame: "modal" }, class: 'dropdown-item' do %>
+            <% if policy(card).actions? %>
+              <div class="dropdown is-hoverable">
+                <div class="dropdown-trigger">
+                  <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+                    <span>Ação</span>
                     <span class="icon is-small">
-                      <i class="bi bi-pencil-square"></i>
+                      <i class="bi bi-caret-down-fill"></i>
                     </span>
-                    <span>Editar</span>
-                  <% end %>
+                  </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+                  <div class="dropdown-content">
+                    <% if policy(card).update? %>
+                      <%= link_to edit_collection_card_path(@collection, card), data: { turbo_frame: "modal" }, class: 'dropdown-item' do %>
+                        <span class="icon is-small">
+                          <i class="bi bi-pencil-square"></i>
+                        </span>
+                        <span>Editar</span>
+                      <% end %>
+                    <% end %>
 
-                  <%= link_to collection_card_path(@collection, card), data: { turbo_method: :delete }, class: 'dropdown-item' do %>
-                    <span class="icon is-small">
-                      <i class="bi bi-trash2"></i>
-                    </span>
-                    <span>Remover</span>
-                  <% end %>
+                    <% if policy(card).destroy? %>
+                      <%= link_to collection_card_path(@collection, card), data: { turbo_method: :delete }, class: 'dropdown-item' do %>
+                        <span class="icon is-small">
+                          <i class="bi bi-trash2"></i>
+                        </span>
+                        <span>Remover</span>
+                      <% end %>
+                    <% end %>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% else %>
+              <i>Sem Ações</i>
+            <% end %>
           </td>
         </tr>
       <% end %>
