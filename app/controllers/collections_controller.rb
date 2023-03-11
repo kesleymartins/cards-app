@@ -4,21 +4,30 @@ class CollectionsController < ApplicationController
   before_action :set_collection, only: %i[ edit update destroy ]
 
   def public
-    @collections = Collection.includes([:user, :cards]).only_public.latest
-
-    @pagy, @collections = pagy(@collections)
+    @query = Collection.ransack(params[:query])
+    @collections = @query.result.only_public
+    @pagy, @collections = pagy(@collections.includes([:user, :cards]))
+    
+    @ransack_path = public_collections_path
+    render 'index'
   end
 
   def favorites
-    @collections = Collection.includes([:user, :cards]).latest
-    
-    @pagy, @collections = pagy(@collections)
+    @query = Collection.ransack(params[:query])
+    @collections = @query.result
+    @pagy, @collections = pagy(@collections.includes([:user, :cards]))
+
+    @ransack_path = favorite_collections_path
+    render 'index'
   end
 
   def owned
-    @collections = Collection.includes([:user, :cards]).owned_by(current_user).latest
+    @query = Collection.ransack(params[:query])
+    @collections = @query.result.owned_by(current_user)
+    @pagy, @collections = pagy(@collections.includes([:user, :cards]))
     
-    @pagy, @collections = pagy(@collections)
+    @ransack_path = owned_collections_path
+    render 'index'
   end
 
   def new
