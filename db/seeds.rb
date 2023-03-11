@@ -14,10 +14,10 @@ users = [].append(User.create!({
 
 # --- random user --- # 
 9.times do
-  User.create!({
+  users.append(User.create!({
     email: Faker::Internet.safe_email,
     password: Faker::Internet.password(min_length: 6)
-  })
+  }))
 end
 
 # Data setup
