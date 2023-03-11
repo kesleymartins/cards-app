@@ -51,7 +51,7 @@
               <% end %>
             <% end %>
 
-            <% if collection.can_execute?  %>
+            <% if policy(collection).start_execution?  %>
               <% if collection.execution %>
                 <%= link_to collection.execution, data: { turbo_frame: "modal"}, class: 'dropdown-item' do %>
                   <span class="icon is-small">

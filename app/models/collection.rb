@@ -13,10 +13,6 @@ class Collection < ApplicationRecord
   scope :only_public, -> { where(privacy: Privacy::PUBLIC) }
   scope :owned_by, -> (owner) { where(user: owner) }
 
-  def can_execute?
-    not self.cards.empty?
-  end
-
   def execution
     Execution.find_by(
       collection: self,

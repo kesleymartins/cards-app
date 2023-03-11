@@ -20,4 +20,8 @@ class CollectionPolicy < ApplicationPolicy
   def create_card?
     record.user == user
   end
+
+  def start_execution?
+    not record.cards.empty?
+  end
 end
