@@ -16,6 +16,7 @@ gem 'pagy', '~> 6.0', '>= 6.0.2'
 gem 'devise', '~> 4.9'
 gem 'enumerate_it', '~> 3.2', '>= 3.2.2'
 gem 'ransack', '~> 4.0'
+gem 'pundit', '~> 2.3'
 
 group :development do
   gem 'bullet', '~> 7.0', '>= 7.0.7'
