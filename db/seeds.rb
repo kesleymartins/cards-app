@@ -6,24 +6,34 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-user = User.create!({
-    email: 'user@email.com',
-    password: '123456'
-})
+# --- teste user --- # 
+users = [].append(User.create!({
+  email: 'user@email.com',
+  password: '123456'
+}))
 
-6.times do
-    collection = Collection.create!({
-        title: Faker::Games::WorldOfWarcraft.hero,
-        description: Faker::Games::WorldOfWarcraft.quote,
-        privacy: rand(0..1) == 1 ? Privacy::PUBLIC : Privacy::PRIVATE,
-        user: user
+# --- random user --- # 
+9.times do
+  User.create!({
+    email: Faker::Internet.safe_email,
+    password: Faker::Internet.password(min_length: 6)
+  })
+end
+
+# Data setup
+users.each do |user|
+  20.times do
+    collection = user.collections.create!({
+      title: Faker::Games::WorldOfWarcraft.hero,
+      description: Faker::Games::WorldOfWarcraft.quote,
+      privacy: rand(0..1) == 1 ? Privacy::PUBLIC : Privacy::PRIVATE,
     })
 
-    50.times do
-        Card.create!({
-            question: Faker::Books::Dune.quote,
-            answer: Faker::Books::Dune.character,
-            collection: collection
-        })
+    10.times do
+      collection.cards.create!({
+        question: Faker::Books::Dune.quote,
+        answer: Faker::Books::Dune.character,
+      })
     end
+  end
 end
