@@ -24,27 +24,33 @@
       
         <div class="dropdown-menu" role="menu">
           <div class="dropdown-content">
-            <%= link_to collection_cards_path(collection), class: 'dropdown-item' do %>
-              <span class="icon is-small">
-                <i class="bi bi-files"></i>
-              </span>
-              <span>Cartas</span>
+            <% if policy(collection).list_cards? %>
+              <%= link_to collection_cards_path(collection), class: 'dropdown-item' do %>
+                <span class="icon is-small">
+                  <i class="bi bi-files"></i>
+                </span>
+                <span>Cartas</span>
+              <% end %>
             <% end %>
 
-            <%= link_to edit_collection_path(collection), data: { turbo_frame: "modal" }, class: 'dropdown-item' do %>
-              <span class="icon is-small">
-                <i class="bi bi-pencil-square"></i>
-              </span>
-              <span>Editar</span>
+            <% if policy(collection).update? %>
+              <%= link_to edit_collection_path(collection), data: { turbo_frame: "modal" }, class: 'dropdown-item' do %>
+                <span class="icon is-small">
+                  <i class="bi bi-pencil-square"></i>
+                </span>
+                <span>Editar</span>
+              <% end %>
             <% end %>
 
-            <%= link_to collection_path(collection), data: { turbo_method: :delete }, class: 'dropdown-item' do %>
-              <span class="icon is-small">
-                <i class="bi bi-trash2"></i>
-              </span>
-              <span>Remover</span>
+            <% if policy(collection).destroy? %>
+              <%= link_to collection_path(collection), data: { turbo_method: :delete }, class: 'dropdown-item' do %>
+                <span class="icon is-small">
+                  <i class="bi bi-trash2"></i>
+                </span>
+                <span>Remover</span>
+              <% end %>
             <% end %>
-            
+
             <% if collection.can_execute?  %>
               <% if collection.execution %>
                 <%= link_to collection.execution, data: { turbo_frame: "modal"}, class: 'dropdown-item' do %>

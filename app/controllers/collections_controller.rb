@@ -34,7 +34,9 @@ class CollectionsController < ApplicationController
     @collection = Collection.new
   end
 
-  def edit; end
+  def edit
+    authorize @collection
+  end
 
   def create
     @collection = Collection.new(collection_params)
@@ -54,6 +56,8 @@ class CollectionsController < ApplicationController
   end
 
   def update
+    authorize @collection
+
     if @collection.update(collection_params)
       redirect_to collections_path, notice: "Collection atualizada com sucesso!"
     else
@@ -68,6 +72,8 @@ class CollectionsController < ApplicationController
   end
 
   def destroy
+    authorize @collection
+    
     @collection.destroy
     redirect_to collections_url, notice: "Collection removida com sucesso!."
   end
