@@ -14,7 +14,7 @@ class CollectionsController < ApplicationController
 
   def favorites
     @query = Collection.ransack(params[:query])
-    @collections = @query.result
+    @collections = @query.result.favorited_by(current_user)
     @pagy, @collections = pagy(@collections.includes([:user, :cards]))
 
     @ransack_path = favorite_collections_path
