@@ -21,13 +21,20 @@ Cards app is a flashcards application, that allow users to easily create and sha
 
 - Authentication
   - [devise](https://github.com/heartcombo/devise)
+- Authorization
+  - [pundit]()
+
+- Search
+  - [ransack](https://github.com/activerecord-hackery/ransack)
+
 - Enums
   - [enumerate_it](https://github.com/lucascaton/enumerate_it)
 - Pagination
   - [pagy](https://github.com/ddnexus/pagy)
 - Tests
   - [rspec-rails](https://rubygems.org/gems/rspec-rails)
-  - [factory-bot-rails](https://github.com/thoughtbot/shoulda-matchers)
+  - [factory-bot-rails](https://github.com/thoughtbot/factory_bot_rails)
+  - [shoula-matcher](https://github.com/thoughtbot/shoulda-matchers)
 - Debug
   - [letter-opener](https://github.com/ryanb/letter_opener)
   - [bullet](https://github.com/flyerhzm/bullet')
@@ -43,10 +50,14 @@ Cards app is a flashcards application, that allow users to easily create and sha
 bundle install
 
 # run migrations
-rails db:migraet
+rails db:migrate
 
 # seed database
 rails db:seed
+
+# base user credential
+# email: user@email.com
+# password: 123456
 ```
 
 
@@ -56,8 +67,7 @@ rails db:seed
 ---
 
 ```bash
-# base user credential
-# email: user@email.com
-# password: 123456
+# run tests
+rspec
 ```
 
