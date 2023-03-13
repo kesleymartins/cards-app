@@ -21,16 +21,16 @@ gem 'pundit', '~> 2.3'
 group :development do
   gem 'bullet', '~> 7.0', '>= 7.0.7'
   gem 'letter_opener', '~> 1.4', '>= 1.4.1'
-  gem 'fuubar', '~> 2.5', '>= 2.5.1'
 end
 
 group :test do
+  gem 'rspec-rails', '~> 6.0.0'
   gem 'shoulda-matchers', '~> 5.3'
+  gem 'factory_bot_rails', '~> 6.2'
+  gem 'fuubar', '~> 2.5', '>= 2.5.1'
 end
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
-  gem 'rspec-rails', '~> 6.0.0'
-  gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 3.1', '>= 3.1.1'
 end
