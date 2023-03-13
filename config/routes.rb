@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :collections, except: %i[ index show ] do
     resources :cards, except: %i[ show ]
     resources :executions, shallow: true, only: %i[ new create show ]
+    resources :favorites, only: %i[ create destroy ]
   end
 
   scope :collections do
