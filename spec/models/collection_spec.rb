@@ -10,6 +10,7 @@ RSpec.describe Collection, type: :model do
   context "associations" do
     it { should have_many(:cards).dependent(:destroy) }
     it { should have_many(:executions).dependent(:destroy) }
+    it { should have_many(:favorites).dependent(:destroy) }
     it { should belong_to(:user) }
   end
 end
