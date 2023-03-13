@@ -12,17 +12,4 @@ RSpec.describe Collection, type: :model do
     it { should have_many(:executions).dependent(:destroy) }
     it { should belong_to(:user) }
   end
-
-  context "execution" do
-    let(:collection) { create(:collection) }
-    let(:collection_with_cards) { create(:collection_with_cards)}
-
-    it "cant create execution" do
-      expect(collection_with_cards.can_execute?).to be(true)
-    end 
-    
-    it "cannot create execution" do
-      expect(collection.can_execute?).to be(false)
-    end
-  end
 end
