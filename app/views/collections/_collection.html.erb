@@ -51,6 +51,24 @@
               <% end %>
             <% end %>
 
+            <% if collection.favorited(current_user) %>
+              <%= link_to collection_favorite_path(collection, collection.favorited(current_user)), data: { turbo_method: :delete }, class: 'dropdown-item' do %>
+                <span class="icon is-small">
+                  <i class="bi bi-star"></i>
+                </span>
+                <span>Desfavoritar</span>
+              <% end %>
+
+            <% else %>
+              
+              <%= link_to collection_favorites_path(collection), data: { turbo_method: :post }, class: 'dropdown-item' do %>
+                <span class="icon is-small">
+                  <i class="bi bi-star-fill"></i>
+                </span>
+                <span>Favoritar</span>
+              <% end %>
+            <% end %>
+
             <% if policy(collection).start_execution?  %>
               <% if collection.execution %>
                 <%= link_to collection.execution, data: { turbo_frame: "modal"}, class: 'dropdown-item' do %>
