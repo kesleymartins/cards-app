@@ -10,7 +10,7 @@ class Collection < ApplicationRecord
   has_many :executions, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
-  scope :only_public, -> { where(privacy: Privacy::PUBLIC) }
+  scope :publics, -> (user) { where(privacy: Privacy::PUBLIC).where.not(user: user) }
   scope :owned_by, -> (owner) { where(user: owner) }
   scope :favorited_by, -> (user) { joins(:favorites).where(user: user) }
 
