@@ -5,7 +5,7 @@ class CollectionsController < ApplicationController
 
   def public
     @query = Collection.ransack(params[:query])
-    @collections = @query.result.only_public
+    @collections = @query.result.publics(current_user)
     @pagy, @collections = pagy(@collections.includes([:user, :cards]))
     
     @ransack_path = public_collections_path
