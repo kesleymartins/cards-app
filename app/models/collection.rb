@@ -6,9 +6,9 @@ class Collection < ApplicationRecord
   validates :privacy, presence: true
 
   belongs_to :user
-
   has_many :cards, dependent: :destroy
   has_many :executions, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   scope :only_public, -> { where(privacy: Privacy::PUBLIC) }
   scope :owned_by, -> (owner) { where(user: owner) }
