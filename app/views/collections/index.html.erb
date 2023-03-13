@@ -1,5 +1,11 @@
 <%= content_for :page_title do %>
-  Coleções
+  <% if current_page?(public_collections_path) %>
+    Coleções Públicas
+  <% elsif current_page?(favorite_collections_path) %>
+    Coleções Favoritas
+  <% elsif current_page?(owned_collections_path) %>
+    Minhas Coleções
+  <% end %>
 <% end %>
 
 <%= content_for :page_actions do %>
