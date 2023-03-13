@@ -12,6 +12,7 @@ class Collection < ApplicationRecord
 
   scope :only_public, -> { where(privacy: Privacy::PUBLIC) }
   scope :owned_by, -> (owner) { where(user: owner) }
+  scope :favorited_by, -> (user) { joins(:favorites).where(user: user) }
 
   def execution
     Execution.find_by(
@@ -19,6 +20,13 @@ class Collection < ApplicationRecord
       user: self.user,
       status: ExecutionStatus::RUNNING
     )
+  end
+
+  def favorited(user)
+    Favorite.find_by({
+      collection: self,
+      user: user
+    })
   end
 
   def self.ransackable_attributes(auth_object = nil)
