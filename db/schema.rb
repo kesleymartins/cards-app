@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_13_122654) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_001545) do
   create_table "cards", force: :cascade do |t|
     t.text "question"
     t.text "answer"
@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_13_122654) do
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.string "privacy", null: false
+    t.string "language", null: false
     t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
