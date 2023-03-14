@@ -12,7 +12,7 @@ class Collection < ApplicationRecord
 
   scope :publics, -> (user) { where(privacy: Privacy::PUBLIC).where.not(user: user) }
   scope :owned_by, -> (owner) { where(user: owner) }
-  scope :favorited_by, -> (user) { joins(:favorites).where(user: user) }
+  scope :favorited_by, -> (user) { joins(:favorites).where(favorites: { user: user }) }
 
   def execution
     Execution.find_by(
