@@ -3,6 +3,7 @@ FactoryBot.define do
     title { Faker::Games::WorldOfWarcraft.hero }
     description { Faker::Games::WorldOfWarcraft.quote }
     privacy { Privacy::PUBLIC }
+    language { Language::PORTUGUESE }
     association :user
 
     factory :collection_with_cards do
