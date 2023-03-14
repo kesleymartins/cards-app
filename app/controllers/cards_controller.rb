@@ -11,11 +11,11 @@ class CardsController < ApplicationController
   def new
     @card = Card.new
 
-    authorize @card
+    authorize @collection, :create_card?
   end
   
   def edit
-    authorize @card
+    authorize @collection, :create_card?
   end
 
   def create
@@ -38,8 +38,8 @@ class CardsController < ApplicationController
   end
 
   def update
-    authorize @card
-    
+    authorize @collection, :create_card?
+
     if @card.update(card_params)
       redirect_to collection_cards_path(@collection), notice: 'Carta atualizada com sucesso!'
     else
@@ -54,7 +54,7 @@ class CardsController < ApplicationController
   end
 
   def destroy
-    authorize @card
+    authorize @collection, :create_card?
 
     @card.destroy
     redirect_to collection_cards_path(@collection), notice: 'Carta removida com sucesso!'
