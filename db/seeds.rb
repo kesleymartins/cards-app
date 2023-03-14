@@ -27,6 +27,7 @@ users.each do |user|
       title: Faker::Games::WorldOfWarcraft.hero,
       description: Faker::Games::WorldOfWarcraft.quote,
       privacy: rand(0..1) == 1 ? Privacy::PUBLIC : Privacy::PRIVATE,
+      language: rand(0..1) == 1 ? Language::PORTUGUESE : Language::ENGLISH
     })
 
     10.times do
