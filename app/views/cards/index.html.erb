@@ -4,7 +4,7 @@
 
 <% if policy(@collection).create_card? %>
   <%= content_for :page_actions do %>
-    <%= link_to new_collection_card_path(@collection), data: { turbo_frame: "modal" }, class: 'button is-link' do %>
+    <%= link_to new_collection_card_path(@collection), data: { turbo_frame: "modal" }, class: 'button is-dark' do %>
       <span class="icon">
         <i class="bi bi-plus-square"></i>
       </span>

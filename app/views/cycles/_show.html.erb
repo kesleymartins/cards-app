@@ -6,7 +6,7 @@
 
     <div class="has-text-centered">
       <div class="block">
-        <button id="show-card-button" class="button is-info is-light">
+        <button id="show-card-button" class="button is-link is-light is-outlined">
           Mostrar Carta
         </button>
       </div>
@@ -24,13 +24,13 @@
           <%= form_with(model: cycle) do |f| %>
             <%= f.hidden_field :type, value: :error %>
           
-            <%= f.submit 'Errei', class: 'button is-danger is-light' %>
+            <%= f.submit 'Errei', class: 'button is-danger is-light is-outlined mx-2' %>
           <% end %>
           
           <%= form_with(model: cycle) do |f| %>
             <%= f.hidden_field :type, value: :success %>
           
-            <%= f.submit 'Acertei', class: 'button is-success is-light' %>
+            <%= f.submit 'Acertei', class: 'button is-success is-light is-outlined mx-2' %>
           <% end %>
         </div>
       </div>
